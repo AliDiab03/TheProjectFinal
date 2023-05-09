@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">The Project Final</string>
+    <string name="string_login">Login</string>
+    <string name="string_username">User Name</string>
+    <string name="string_password">Password</string>
+    <string name="string_remember">Remember me</string>
+    <string name="string_questionsignup">Do you want to create an account ؟</string>
+    <string name="string_signup">Sign Up</string>
+    <string name="string_email">Email</string>
+    <string name="string_edituser">Edit User</string>
+    <string name="string_edit">Edit</string>
+    <string name="string_home">Home</string>
+    <string name="string_add">Add an article</string>
+    <string name="string_addStd">Add a student</string>
+    <string name="string_show">Show Student</string>
+</resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Home">
+
+
+    <TextView
+        android:id="@+id/textStringEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_home"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"/>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_below="@+id/textStringEdit"
+        android:background="@drawable/shap_layout"
+        android:layout_marginTop="27dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Person Name"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txPersonName"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:text="admin@gmail.com"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutRelativ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/layoutPersonName"
+        android:layout_marginTop="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shap_customer" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/ic_baseline_delete_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:layout_marginStart="20dp"
+                android:text="name Subject"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgAddSubject"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/layoutRelativ"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="190dp"
+        android:src="@drawable/ic_baseline_control_point_24" />
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRelativ"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="200dp"
+        android:layout_toEndOf="@+id/imgAddSubject"
+        android:text="@string/string_add"
+        android:textColor="@color/black"
+
+        android:textSize="15dp" />
+
+    <ImageView
+        android:id="@+id/imgAddStudent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/imgAddSubject"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_control_point_24" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgAddSubject"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:layout_toEndOf="@+id/imgAddStudent"
+        android:text="@string/string_addStd"
+        android:textColor="@color/black"
+
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/string_show"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shap_button"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        />
+
+</RelativeLayout>

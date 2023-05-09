@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">المشروع النهائي</string>
+    <string name="string_login">تسجيل الدخول</string>
+    <string name="string_username">اسم المستخدم</string>
+    <string name="string_password">كلمة المرور</string>
+    <string name="string_remember">تذكرني</string>
+    <string name="string_questionsignup">هل تريد انشاء حساب ؟</string>
+    <string name="string_signup">انشاء حساب</string>
+    <string name="string_email">البريد الالكتروني</string>
+    <string name="string_edituser">تعديل الحساب</string>
+    <string name="string_edit">تعديل</string>
+    <string name="string_home">الرئيسية</string>
+    <string name="string_add">اضافة مادة</string>
+    <string name="string_addStd">اضافة طالب</string>
+    <string name="string_show">عرض الطلاب</string>
+</resources>
