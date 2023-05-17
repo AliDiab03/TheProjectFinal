@@ -13,4 +13,16 @@
     <string name="string_add">Add an article</string>
     <string name="string_addStd">Add a student</string>
     <string name="string_show">Show Student</string>
+    <string name="string_nameSubject">Name Subject</string>
+    <string name="string_firstName">First Name</string>
+    <string name="string_lastName">Last Name</string>
+    <string name="string_dateOfbirth">Date Of Birth</string>
+    <string name="string_textMonth">Total student attendance during this month is</string>
+    <string name="string_allStudent">All Student</string>
+    <string name="string_Student_details">Student Details</string>
+    <string name="string_fullname">Full Name</string>
+    <string name="string_age">Age</string>
+    <string name="string_Student_registered_materials">Student Registered Materials</string>
+    <string name="string_nameStudents">Students Names</string>
+    <string name="string_Attendanceregistration">Attendance Registration</string>
 </resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Add_student_1">
+
+
+
+
+    <TextView
+        android:id="@+id/textStudentdetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_Student_details"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/StringTextFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textStudentdetails"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:hint="@string/string_fullname"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shap_text_view"
+        android:layout_below="@+id/StringTextFullName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/StringTextDateOFBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFullName"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/string_dateOfbirth"
+        android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/tvDateOfBirth"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shap_text_view"
+        android:layout_below="@+id/StringTextDateOFBirth"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:id="@+id/StringTextAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFullName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:hint="@string/string_age"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/StringTextDateOFBirth"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvDateOfBirth"
+        android:background="@drawable/shap_text_view" />
+
+
+    <TextView
+        android:id="@+id/TextStringStudentRegistered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDateOfBirth"
+        android:layout_marginTop="50dp"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:text="@string/string_Student_registered_materials" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/TextStringStudentRegistered"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+
+
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

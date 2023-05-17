@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Add_Student">
+
+
+    <TextView
+        android:id="@+id/tectStringAddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_addStd"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tectStringAddStudent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="50dp"
+        android:inputType="textPersonName"
+       android:hint="@string/string_firstName"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/shap_edittext" />
+
+    <EditText
+    android:id="@+id/edTextLastName"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:inputType="textPersonName"
+    android:layout_below="@+id/edTextFirstName"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="7dp"
+    android:layout_marginTop="10dp"
+    android:hint="@string/string_lastName"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/shap_edittext" />
+
+
+    <EditText
+        android:id="@+id/edTextDateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/edTextLastName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/string_dateOfbirth"
+        android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/shap_edittext" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edTextDateOfBirth"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/shap_layout_cheakbox"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <Button
+            android:id="@+id/btnAddSubject"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rcSubject"
+            android:layout_centerInParent="true"
+
+            android:layout_marginTop="100dp"
+            android:background="@drawable/shap_button"
+            android:text="@string/string_addStd"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

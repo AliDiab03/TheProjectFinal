@@ -14,4 +14,16 @@
     <string name="string_add">اضافة مادة</string>
     <string name="string_addStd">اضافة طالب</string>
     <string name="string_show">عرض الطلاب</string>
+    <string name="string_nameSubject">اسم المادة</string>
+    <string name="string_firstName">الاسم الاول</string>
+    <string name="string_lastName">اسم العائلة</string>
+    <string name="string_dateOfbirth">تاريخ الميلاد</string>
+    <string name="string_textMonth">اجمالى نسبة حضور الطلاب خلال هذا الشهر هو</string>
+    <string name="string_allStudent">جميع الطلاب</string>
+    <string name="string_Student_details">تفاصيل الطالب</string>
+    <string name="string_fullname">الاسم كاملا</string>
+    <string name="string_age">العمر</string>
+    <string name="string_Student_registered_materials">المواد المسجلة للطالب</string>
+    <string name="string_nameStudents">اسماء الطلاب</string>
+    <string name="string_Attendanceregistration">تسجيل الحضور</string>
 </resources>
