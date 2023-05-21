@@ -12,5 +12,7 @@ public class Add_student_1 extends AppCompatActivity {
         setContentView(R.layout.activity_add_student1);
 
         //AddStudent
+        //AddStudent
+        //AddStudent
     }
 }
