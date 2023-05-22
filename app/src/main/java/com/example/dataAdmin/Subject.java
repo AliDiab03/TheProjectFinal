@@ -8,7 +8,7 @@ public class Subject {
     public static final String COL_ID = "id";
     public static final String COL_NAME = "name";
 
-    public static final String CREATE_TABLE = "CREATE CREATE TABLE IF NOT EXISTS "+TABLE_NAME +
+    public static final String CREATE_TABLE = " CREATE TABLE IF NOT EXISTS "+TABLE_NAME +
             " ("+COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+COL_NAME + " TEXT";
 
     public Subject(int id, String name) {
