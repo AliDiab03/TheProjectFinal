@@ -1,9 +1,9 @@
 package com.example.dataAdmin;
 
 public class Student_Subject {
-    private int id ;
-    private int student_id ;
-    private int subject_id ;
+    private int id;
+    private int student_id;
+    private int subject_id;
 
 
     public static final String TABLE_NAME = "student_subject";
@@ -11,8 +11,11 @@ public class Student_Subject {
     public static final String COL_STUDENT_ID = "studentID";
     public static final String COL_SUBJECT_ID = "subject_id";
 
-    public static final String CREATE_TABLE ="CREATE TABLE IF NOT EXISTS"+TABLE_NAME + "("+COL_ID+" INTEGER PRIMARY AUTOINCREMENT,"+
-            COL_STUDENT_ID + " INTEGER,"+ COL_SUBJECT_ID + "INTEGER";
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
+            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COL_STUDENT_ID + " INTEGER, " +
+            COL_SUBJECT_ID + " INTEGER);";
+
 
     public Student_Subject(int id, int student_id, int subject_id) {
         this.id = id;

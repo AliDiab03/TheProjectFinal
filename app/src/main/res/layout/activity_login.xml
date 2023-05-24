@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinatorRelative1"
     android:padding="10dp"
     tools:context=".Login">
 
@@ -70,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txSignup"
         android:layout_alignBottom="@+id/txSignup"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="-1dp"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -79,7 +79,7 @@
         android:layout_toEndOf="@+id/txSignup"
         android:text="@string/string_signup"
         android:textColor="@color/blue"
-        android:textSize="18dp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <Button

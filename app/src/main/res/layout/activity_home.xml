@@ -55,47 +55,42 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/layoutRelativ"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_below="@+id/layoutPersonName"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:orientation="vertical">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcSubject"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
 
 
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/layoutPersonName"></androidx.recyclerview.widget.RecyclerView>
+
+
+
 
     <ImageView
         android:id="@+id/imgAddSubject"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/layoutRelativ"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginBottom="120dp"
         android:src="@drawable/ic_baseline_control_point_24" />
 
 
     <TextView
-          android:id="@+id/txAddSubject"
+        android:id="@+id/txAddSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutRelativ"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="200dp"
-        android:background="?attr/selectableItemBackground"
+        android:layout_marginBottom="128dp"
         android:layout_toEndOf="@+id/imgAddSubject"
+        android:background="?attr/selectableItemBackground"
         android:text="@string/string_add"
         android:textColor="@color/black"
 
@@ -105,20 +100,20 @@
         android:id="@+id/imgAddStudent"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/imgAddSubject"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
         android:layout_marginStart="10dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_control_point_24" />
 
     <TextView
          android:id="@+id/txAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgAddSubject"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="78dp"
         android:background="?attr/selectableItemBackground"
         android:layout_toEndOf="@+id/imgAddStudent"
         android:text="@string/string_addStd"
@@ -128,15 +123,15 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="120dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="@string/string_show"
-        android:textSize="15dp"
-        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/shap_button"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
-        />
+
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shap_button"
+        android:text="@string/string_show"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
 
 </RelativeLayout>

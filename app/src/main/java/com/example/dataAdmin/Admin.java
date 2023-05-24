@@ -8,14 +8,15 @@ public class Admin {
 
 
 
-public static final String TABLE_NAME = "admin";
-public static final String COL_ID = "id";
-public static final String COL_USERNAME = "username";
-public static final String COL_EMAIL ="email";
-public static final String COL_PASSWORD = "password";
 
-public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME + "("+COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-        +COL_USERNAME + " TEXT" + COL_EMAIL + " TEXT" + COL_PASSWORD + " TEXT" ;
+    public static final String TABLE_NAME = "admin";
+    public static final String COL_ID = "id";
+    public static final String COL_USERNAME = "username";
+    public static final String COL_EMAIL = "email";
+    public static final String COL_PASSWORD = "password";
+
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_USERNAME + " TEXT, " + COL_EMAIL + " TEXT, " + COL_PASSWORD + " TEXT);";
 
 
 

@@ -63,39 +63,34 @@
         android:background="@drawable/shap_edittext" />
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/edTextDateOfBirth"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/shap_layout_cheakbox"
-        android:orientation="vertical"
-        android:padding="10dp">
+
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcSubject"
             android:layout_width="match_parent"
+            android:layout_below="@+id/edTextDateOfBirth"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
 
 
-        <Button
-            android:id="@+id/btnAddSubject"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rcSubject"
-            android:layout_centerInParent="true"
+    <Button
+        android:id="@+id/btnAddSubject"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/shap_button"
+        android:text="@string/string_addStd"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
 
-            android:layout_marginTop="100dp"
-            android:background="@drawable/shap_button"
-            android:text="@string/string_addStd"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
 
 
-    </RelativeLayout>
 
 
 </RelativeLayout>
