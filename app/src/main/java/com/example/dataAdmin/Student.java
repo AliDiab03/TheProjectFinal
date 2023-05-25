@@ -4,7 +4,7 @@ public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private int birthdate;
+    private String birthdate;
 
 
     public static final String TABLE_NAME = "student";
@@ -17,7 +17,7 @@ public class Student {
             COL_LAST_NAME + " TEXT, " + COL_BIRTH_DATE + " INTEGER);";
 
 
-    public Student(int id, String firstName, String lastName, int birthdate) {
+    public Student(int id, String firstName, String lastName, String birthdate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,11 +48,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public int getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(int birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 }
