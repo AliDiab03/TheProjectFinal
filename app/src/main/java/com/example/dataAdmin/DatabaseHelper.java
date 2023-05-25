@@ -2,6 +2,7 @@ package com.example.dataAdmin;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -24,9 +25,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void deleteDatabase(Context context) {
-        context.deleteDatabase(DATABASE_NAME);
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -36,7 +34,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Subject.CREATE_TABLE);
         db.execSQL(Student_Subject.CREATE_TABLE);
         db.execSQL(Presence.CREATE_TABLE);
-
 
 
     }
@@ -73,10 +70,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertStudent_Subject(int student_id, int subject_id) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Student_Subject.COL_STUDENT_ID,student_id);
-        values.put(Student_Subject.COL_SUBJECT_ID,subject_id);
-        long row = database.insert(Student_Subject.TABLE_NAME,null,values);
-        return row>0;
+        values.put(Student_Subject.COL_STUDENT_ID, student_id);
+        values.put(Student_Subject.COL_SUBJECT_ID, subject_id);
+        long row = database.insert(Student_Subject.TABLE_NAME, null, values);
+        return row > 0;
 
     }
 
@@ -91,6 +88,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return row > 0;
     }
 
+
+
+    public boolean getAuthenticateUser(String userNameOrEmail, String password) {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Admin.COL_USERNAME};
+        String selection = "(" + Admin.COL_USERNAME + " = ? OR " + Admin.COL_EMAIL + " = ?) AND " + Admin.COL_PASSWORD + " = ?";
+        String[] selectionArgs = {userNameOrEmail, userNameOrEmail, password};
+        Cursor cursor = database.query(Admin.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        boolean isUserExists = cursor.moveToFirst();
+        cursor.close();
+        return isUserExists;
+    }
 
 
 

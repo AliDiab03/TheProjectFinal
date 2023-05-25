@@ -1,15 +1,13 @@
+
 package com.example.theprojectfinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dataAdmin.Admin;
 import com.example.dataAdmin.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,6 +26,8 @@ public class Login extends AppCompatActivity {
     Button btnLogin;
     TextView txSignup;
     RelativeLayout coordinatorRelative1;
+    DatabaseHelper databaseHelper;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -42,51 +41,57 @@ public class Login extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         txSignup = findViewById(R.id.txSignup1);
         coordinatorRelative1 = findViewById(R.id.coordinatorRelative1);
+        databaseHelper = new DatabaseHelper(this);
+        sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
-
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        if (isLoggedIn) {
+            // User is already logged in, redirect to the desired page
+            Intent intent = new Intent(Login.this, Home.class);
+            startActivity(intent);
+            finish();
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                boolean isClicked = true;
-
                 String userName = edTextSignInUserName.getText().toString();
                 String password = edTextSignInPassword.getText().toString();
 
-                if (userName.isEmpty()) {
-                    edTextSignInUserName.setError("الرجاء ادخال اسم المستخدم");
-                    isClicked = false;
+                if (databaseHelper.getAuthenticateUser(userName, password)) {
+                    // تسجيل الدخول بنجاح
+                    Toast.makeText(Login.this, "تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
 
-                } else if (userName.length() <= 4) {
-                    edTextSignInUserName.setError("الرجاء ادخال اسم المستخدم");
-                    isClicked = false;
-
-                }
-                if (password.isEmpty()) {
-                    edTextSignInPassword.setError("الرجاء ادخال كلمة المرور بشكل صحيح");
-                    isClicked = false;
-                } else if (password.length() <= 4) {
-                    edTextSignInPassword.setError("الرجاء ادخال كلمة المرور بشكل صحيح");
-                    isClicked = false;
-                }
-
-                if (ckBtnRemember.isChecked()) {
-
-                }
-
-                if (isClicked) {
                     Intent intent = new Intent(Login.this, Home.class);
                     startActivity(intent);
+                    finish();
+
+                    if (ckBtnRemember.isChecked()) {
+                        // حفظ بيانات المستخدم في SharedPreferences عند تسجيل الدخول
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("isLoggedIn", true);
+                        editor.putString("userName", userName);
+                        editor.putString("password", password);
+                        editor.apply();
+                    }
                 } else {
-                    Snackbar snackbar = Snackbar.make(coordinatorRelative1, "الرجاء ادخال البيانات بشكل صحيح", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(Login.this, R.color.teal_700));
-                    snackbar.show();
-                    snackbar.setTextColor(ContextCompat.getColor(Login.this, R.color.white));
+                    // فشل تسجيل الدخول
+                    Toast.makeText(Login.this, "فشل تسجيل الدخول", Toast.LENGTH_SHORT).show();
                 }
 
+                if (userName.isEmpty()) {
+                    edTextSignInUserName.setError("الرجاء ادخال اسم المستخدم");
+                } else if (userName.length() <= 4) {
+                    edTextSignInUserName.setError("الرجاء ادخال اسم المستخدم");
+                }
+
+                if (password.isEmpty()) {
+                    edTextSignInPassword.setError("الرجاء ادخال كلمة المرور بشكل صحيح");
+                } else if (password.length() <= 4) {
+                    edTextSignInPassword.setError("الرجاء ادخال كلمة المرور بشكل صحيح");
+                }
             }
         });
-
 
         edTextSignInPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,15 +106,14 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (edTextSignInPassword.length() >= 5) {
                     edTextSignInPassword.setTextColor(ContextCompat.getColor(Login.this, R.color.black));
                 } else if (edTextSignInPassword.length() <= 5) {
                     edTextSignInPassword.setTextColor(ContextCompat.getColor(Login.this, R.color.red));
                 }
-
             }
         });
+
         txSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +122,5 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }

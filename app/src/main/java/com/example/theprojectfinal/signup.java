@@ -10,13 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.example.dataAdmin.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 
 public class signup extends AppCompatActivity {
     EditText edTextSignUpUserName, edTextSignUpEmail, edTextSignupPassword;
     Button btnSignUp;
     RelativeLayout coordinatorRelative2 ;
+    DatabaseHelper databaseHelper ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,8 @@ public class signup extends AppCompatActivity {
         edTextSignupPassword = findViewById(R.id.edTextSignupPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
         coordinatorRelative2 = findViewById(R.id.coordinatorRelative2);
+        databaseHelper = new DatabaseHelper(this);
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +40,7 @@ public class signup extends AppCompatActivity {
                 String userName = edTextSignUpUserName.getText().toString();
                 String email = edTextSignUpEmail.getText().toString();
                 String password = edTextSignupPassword.getText().toString();
+
 
                 if (userName.isEmpty()) {
                     edTextSignUpUserName.setError("الرجاء ادخال اسم المستخدم");
@@ -45,32 +51,34 @@ public class signup extends AppCompatActivity {
                 }
                 if (email.isEmpty()) {
                     edTextSignUpEmail.setError("الرجاء ادخال البريد الالكتروني");
+                    isClicked = false;
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     edTextSignUpEmail.setError("الرجاء ادخال البريد الالكتروني بشكل صحيح");
                     isClicked = false;
                 }
-                if (password.isEmpty()){
+                if (password.isEmpty()) {
                     edTextSignupPassword.setError("الرجاء ادخال كلمة مرور قوية");
-                    isClicked = false ;
-                }else if (password.length()<=4){
+                    isClicked = false;
+                } else if (password.length() <= 4) {
                     edTextSignupPassword.setError("يجب ان لا تكون كلمة المرور اقل من 4");
-                    isClicked = false ;
+                    isClicked = false;
                 }
 
+                if (isClicked) {
+                    if (databaseHelper.insertAdmin(userName, email, password)) {
+                        // نجاح إنشاء الحساب
+                        Toast.makeText(signup.this, "نجاح إنشاء الحساب", Toast.LENGTH_SHORT).show();
+                        // تنفيذ الإجراءات اللازمة بعد إنشاء الحساب
 
-                if (isClicked){
-                    Intent intent = new Intent(signup.this,Login.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    Snackbar snackbar = Snackbar.make(coordinatorRelative2, "الرجاء ادخال البيانات بشكل صحيح", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(signup.this, R.color.teal_700));
-                    snackbar.show();
-                    snackbar.setTextColor(ContextCompat.getColor(signup.this, R.color.white));
+                        Intent intent = new Intent(signup.this, Login.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // فشل إنشاء الحساب
+                        Toast.makeText(signup.this, "فشل إنشاء الحساب", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-
             }
         });
 
-    }
-}
+    }}
