@@ -1,13 +1,19 @@
 package com.example.theprojectfinal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -98,10 +104,31 @@ public class Home extends AppCompatActivity {
             addSubject = new Adapter_AddSubject(this, subjects, new Adapter_AddSubject.onItemClick() {
                 @Override
                 public void onDelete(int id, int position) {
-                    if (databaseHelper.deleteSubject(String.valueOf(id))) {
-                        subjects.remove(position);
-                        addSubject.notifyItemRemoved(position);
-                    }
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                    builder.setTitle("حذف المادة");
+                    builder.setMessage("هل تريد تاكيد حذف المادة");
+                    builder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (databaseHelper.deleteSubject(String.valueOf(id))) {
+                                subjects.remove(position);
+                                addSubject.notifyItemRemoved(position);
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+
+                    builder.setCancelable(false);
+                    builder.show();
+
+
                 }
             });
 
