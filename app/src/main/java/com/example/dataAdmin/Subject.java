@@ -6,7 +6,7 @@ public class Subject {
 
 
 
-    public static final String TABLE_NAME = "student";
+    public static final String TABLE_NAME = "subject";
     public static final String COL_ID = "id";
     public static final String COL_NAME = "name";
 

@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "project_final_db";
     private static final int DATABASE_VERSION = 1;
@@ -130,6 +132,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int rowsAffected = database.update(Admin.TABLE_NAME, values, selection, selectionArgs);
         return rowsAffected > 0;
     }
+    @SuppressLint("Range")
+    public ArrayList<Subject> getSubjects() {
+        ArrayList<Subject> subjects = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Subject.COL_ID, Subject.COL_NAME};
+        Cursor cursor = database.query(Subject.TABLE_NAME, columns, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                 int id = cursor.getInt(cursor.getColumnIndex(Subject.COL_ID));
+                String name = cursor.getString(cursor.getColumnIndex(Subject.COL_NAME));
+                Subject subject = new Subject(id, name);
+                subjects.add(subject);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return subjects;
+    }
+
+
+    public boolean deleteSubject(String id) {
+        SQLiteDatabase db = getWritableDatabase();
+        int rowId = db.delete(Subject.TABLE_NAME, Subject.COL_ID + "=?", new String[]{id});
+        return rowId > 0;
+    }
+
+
+
+
+
 
 }
 

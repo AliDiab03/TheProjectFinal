@@ -67,7 +67,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcSubject"
+            android:id="@+id/rcSubject1"
             android:layout_width="match_parent"
             android:layout_below="@+id/edTextDateOfBirth"
             android:layout_marginTop="10dp"

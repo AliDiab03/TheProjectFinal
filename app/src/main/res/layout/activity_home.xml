@@ -12,12 +12,12 @@
         android:id="@+id/textStringEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:text="@string/string_home"
         android:textColor="@color/black"
         android:textSize="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 
     <RelativeLayout
@@ -25,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="77dp"
         android:layout_below="@+id/textStringEdit"
-        android:background="@drawable/shap_layout"
         android:layout_marginTop="27dp"
+        android:background="@drawable/shap_layout"
         android:orientation="vertical">
 
         <TextView
@@ -45,9 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txPersonName"
-            android:layout_marginTop="10dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -55,29 +55,25 @@
     </RelativeLayout>
 
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcSubject"
-            android:layout_width="match_parent"
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcSubject"
+        android:layout_width="match_parent"
 
 
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/layoutPersonName"></androidx.recyclerview.widget.RecyclerView>
-
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutPersonName"
+        android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
 
 
     <ImageView
         android:id="@+id/imgAddSubject"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="120dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_baseline_control_point_24" />
 
 
@@ -101,20 +97,20 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="70dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_baseline_control_point_24" />
 
     <TextView
-         android:id="@+id/txAddStudent"
+        android:id="@+id/txAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="78dp"
-        android:background="?attr/selectableItemBackground"
         android:layout_toEndOf="@+id/imgAddStudent"
+        android:background="?attr/selectableItemBackground"
         android:text="@string/string_addStd"
         android:textColor="@color/black"
 
