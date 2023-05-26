@@ -29,13 +29,13 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
-    TextView txPersonName, txEmailAdmin, txAddSubject;
+    TextView txPersonName, txEmailAdmin, txAddSubject, txAddStudent;
     DatabaseHelper databaseHelper;
     RelativeLayout layoutPersonName;
     Admin admin;
     Adapter_AddSubject addSubject;
     RecyclerView rcSubject;
-    ImageView imgAddSubject;
+    ImageView imgAddSubject, imgAddStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,8 @@ public class Home extends AppCompatActivity {
         rcSubject = findViewById(R.id.rcSubject);
         imgAddSubject = findViewById(R.id.imgAddSubject);
         txAddSubject = findViewById(R.id.txAddSubject);
+        txAddStudent = findViewById(R.id.txAddStudent);
+        imgAddStudent = findViewById(R.id.imgAddStudent);
         databaseHelper = new DatabaseHelper(this);
 
         // استدعاء الوظيفة للحصول على بيانات الـ Admin من قاعدة البيانات
@@ -76,8 +78,24 @@ public class Home extends AppCompatActivity {
         imgAddSubject.setOnClickListener(addSubjectClickListener);
         txAddSubject.setOnClickListener(addSubjectClickListener);
 
+        View.OnClickListener addStudentClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Home.this, Add_Student.class);
+                startActivity(intent);
+
+            }
+        };
+
+        imgAddStudent.setOnClickListener(addStudentClickListener);
+        txAddStudent.setOnClickListener(addStudentClickListener);
+
 
     }
+
+
+
 
 
     @Override

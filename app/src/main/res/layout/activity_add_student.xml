@@ -27,11 +27,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="50dp"
-        android:inputType="textPersonName"
-       android:hint="@string/string_firstName"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="12dp"
-        android:background="@drawable/shap_edittext" />
+        android:background="@drawable/shap_edittext"
+        android:hint="@string/string_firstName"
+        android:inputType="textPersonName" />
 
     <EditText
     android:id="@+id/edTextLastName"
@@ -63,27 +63,33 @@
         android:background="@drawable/shap_edittext" />
 
 
-
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/edTextDateOfBirth"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="114dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcSubject1"
             android:layout_width="match_parent"
-            android:layout_below="@+id/edTextDateOfBirth"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
 
+    </RelativeLayout>
+
+
     <Button
-        android:id="@+id/btnAddSubject"
+        android:id="@+id/btnAddStudent"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/shap_button"
         android:text="@string/string_addStd"
         android:textColor="@color/white"

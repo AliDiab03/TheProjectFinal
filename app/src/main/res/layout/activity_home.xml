@@ -55,14 +55,21 @@
     </RelativeLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcSubject"
+    <RelativeLayout
         android:layout_width="match_parent"
-
-
-        android:layout_height="wrap_content"
+        android:layout_height="330dp"
         android:layout_below="@id/layoutPersonName"
-        android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="50dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcSubject"
+            android:layout_width="match_parent"
+
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
 
 
     <ImageView
