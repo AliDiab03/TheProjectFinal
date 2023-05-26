@@ -1,5 +1,6 @@
 package com.example.dataAdmin;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -89,7 +90,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     public boolean getAuthenticateUser(String userNameOrEmail, String password) {
         SQLiteDatabase database = getReadableDatabase();
         String[] columns = {Admin.COL_USERNAME};
@@ -102,5 +102,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    @SuppressLint("Range")
+    public Admin getAdmin() {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Admin.COL_ID, Admin.COL_USERNAME, Admin.COL_EMAIL, Admin.COL_PASSWORD};
+        Cursor cursor = database.query(Admin.TABLE_NAME, columns, null, null, null, null, null);
+        Admin admin = null;
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndex(Admin.COL_ID));
+            String userName = cursor.getString(cursor.getColumnIndex(Admin.COL_USERNAME));
+            String email = cursor.getString(cursor.getColumnIndex(Admin.COL_EMAIL));
+            String password = cursor.getString(cursor.getColumnIndex(Admin.COL_PASSWORD));
+            admin = new Admin(id, userName, email, password);
+        }
+        cursor.close();
+        return admin;
+    }
+
+    public boolean updateAdmin(Admin admin) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Admin.COL_USERNAME, admin.getUserName());
+        values.put(Admin.COL_EMAIL, admin.getEmail());
+        values.put(Admin.COL_PASSWORD, admin.getPassword());
+        String selection = Admin.COL_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(admin.getId())};
+        int rowsAffected = database.update(Admin.TABLE_NAME, values, selection, selectionArgs);
+        return rowsAffected > 0;
+    }
 
 }
+

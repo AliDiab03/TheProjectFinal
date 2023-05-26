@@ -1,12 +1,10 @@
 package com.example.dataAdmin;
 
 public class Admin {
-    private int id ;
-    private String userName ;
-    private String email ;
-    private String password ;
-
-
+    private int id;
+    private String userName;
+    private String email;
+    private String password;
 
 
     public static final String TABLE_NAME = "admin";
@@ -19,31 +17,13 @@ public class Admin {
             + COL_USERNAME + " TEXT, " + COL_EMAIL + " TEXT, " + COL_PASSWORD + " TEXT);";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Admin(int id, String userName, String email, String password) {
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
     }
+
 
     public int getId() {
         return id;

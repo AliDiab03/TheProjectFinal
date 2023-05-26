@@ -36,19 +36,18 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Person Name"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txEmailAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txPersonName"
             android:layout_marginTop="10dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
-            android:text="admin@gmail.com"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
