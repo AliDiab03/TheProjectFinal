@@ -37,7 +37,12 @@ public class Add_Student extends AppCompatActivity {
 
         ArrayList<Subject>subjects = databaseHelper.getSubjects();
 
-        Adapter_Subject_Add_Student adapterSubjectAddStudent = new Adapter_Subject_Add_Student(this,subjects);
+        Adapter_Subject_Add_Student adapterSubjectAddStudent = new Adapter_Subject_Add_Student(this, subjects, new Adapter_Subject_Add_Student.isClicked() {
+            @Override
+            public void onCheckBoxClick(int position) {
+                Toast.makeText(Add_Student.this, ""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
         rcSubject1.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         rcSubject1.setAdapter(adapterSubjectAddStudent);
 

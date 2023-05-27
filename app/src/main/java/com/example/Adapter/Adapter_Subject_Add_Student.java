@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,12 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
 
     Context context ;
     ArrayList<Subject>dataSubject ;
+    isClicked isClicked ;
 
-    public Adapter_Subject_Add_Student(Context context, ArrayList<Subject> dataSubject) {
+    public Adapter_Subject_Add_Student(Context context, ArrayList<Subject> dataSubject, isClicked isClicked) {
         this.context = context;
         this.dataSubject = dataSubject;
+        this.isClicked = isClicked ;
     }
 
     public Context getContext() {
@@ -50,7 +53,15 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
 
     @Override
     public void onBindViewHolder(@NonNull myHolder holder, int position) {
-        holder.txSubject.setText(dataSubject.get(position).getName());
+        holder.txSubject.setText(dataSubject.get(holder.getAdapterPosition()).getName());
+        holder.ckBoxSubj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClicked != null){
+                    isClicked.onCheckBoxClick(holder.getAdapterPosition());
+                }
+            }
+        });
     }
 
 
@@ -62,9 +73,15 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
 
     public class myHolder extends RecyclerView.ViewHolder{
         TextView txSubject ;
+        CheckBox ckBoxSubj ;
         public myHolder(@NonNull View itemView) {
             super(itemView);
             txSubject = itemView.findViewById(R.id.txSubject);
+            ckBoxSubj =  itemView.findViewById(R.id.ckBoxSubj);
         }
+    }
+
+    public interface isClicked {
+        void onCheckBoxClick (int position);
     }
 }

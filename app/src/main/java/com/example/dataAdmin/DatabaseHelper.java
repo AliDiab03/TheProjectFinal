@@ -132,6 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int rowsAffected = database.update(Admin.TABLE_NAME, values, selection, selectionArgs);
         return rowsAffected > 0;
     }
+
     @SuppressLint("Range")
     public ArrayList<Subject> getSubjects() {
         ArrayList<Subject> subjects = new ArrayList<>();
@@ -140,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(Subject.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                 int id = cursor.getInt(cursor.getColumnIndex(Subject.COL_ID));
+                int id = cursor.getInt(cursor.getColumnIndex(Subject.COL_ID));
                 String name = cursor.getString(cursor.getColumnIndex(Subject.COL_NAME));
                 Subject subject = new Subject(id, name);
                 subjects.add(subject);
