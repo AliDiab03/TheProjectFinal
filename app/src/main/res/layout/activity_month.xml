@@ -8,9 +8,25 @@
     tools:context=".Month">
 
 
+
+    <TextView
+        android:id="@+id/txTitleSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="20dp"></TextView>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMonth"
         android:layout_width="match_parent"
+        android:layout_below="@+id/txTitleSubject"
+        android:layout_marginTop="20dp"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>

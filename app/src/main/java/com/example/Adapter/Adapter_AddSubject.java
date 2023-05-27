@@ -1,6 +1,7 @@
 package com.example.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dataAdmin.Subject;
+import com.example.theprojectfinal.Month;
 import com.example.theprojectfinal.R;
 
 import java.util.ArrayList;
@@ -44,6 +46,16 @@ onItemClick onItemClick ;
                 if (adapterPosition != RecyclerView.NO_POSITION){
                     onItemClick.onDelete(data.get(adapterPosition).getId(),adapterPosition);
                 }
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // الانتقال إلى النشاط الثاني
+                Intent intent = new Intent(context, Month.class);
+                // قم بتمرير أي بيانات إضافية إلى النشاط الثاني إذا لزم الأمر
+                intent.putExtra("subjectName", data.get(holder.getAdapterPosition()).getName());
+                context.startActivity(intent);
             }
         });
 
