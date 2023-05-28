@@ -13,7 +13,7 @@ public class Student {
     public static final String COL_LAST_NAME = "lastName";
     public static final String COL_BIRTH_DATE = "birthDate";
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-            "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_FIRST_NAME + " TEXT, " +
+            "(" + COL_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT, " + COL_FIRST_NAME + " TEXT, " +
             COL_LAST_NAME + " TEXT, " + COL_BIRTH_DATE + " INTEGER);";
 
 

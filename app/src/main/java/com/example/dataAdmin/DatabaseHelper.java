@@ -150,6 +150,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return subjects;
     }
+    @SuppressLint("Range")
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> students = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Student.COL_ID, Student.COL_FIRST_NAME, Student.COL_LAST_NAME, Student.COL_BIRTH_DATE};
+        Cursor cursor = database.query(Student.TABLE_NAME, columns, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
+                String firstName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
+                String lastName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
+                String birthDate = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
+                Student student = new Student(id, firstName, lastName, birthDate);
+                students.add(student);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return students;
+    }
+
 
 
     public boolean deleteSubject(String id) {
