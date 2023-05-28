@@ -7,6 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardMonth"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
@@ -18,7 +19,7 @@
             android:id="@+id/txMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="@color/white"
             android:layout_gravity="center"/>
 
