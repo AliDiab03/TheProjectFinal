@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean getAuthenticateUser(String userNameOrEmail, String password) {
         SQLiteDatabase database = getReadableDatabase();
         String[] columns = {Admin.COL_USERNAME};
-        String selection = "(" + Admin.COL_USERNAME + " = ? OR " + Admin.COL_EMAIL + " = ?) AND " + Admin.COL_PASSWORD + " = ?";
+        String selection = "(" + Admin.COL_USERNAME + " =?  OR " + Admin.COL_EMAIL + " = ?) AND " + Admin.COL_PASSWORD + " = ?";
         String[] selectionArgs = {userNameOrEmail, userNameOrEmail, password};
         Cursor cursor = database.query(Admin.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
         boolean isUserExists = cursor.moveToFirst();
