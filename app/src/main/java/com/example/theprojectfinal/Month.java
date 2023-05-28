@@ -29,7 +29,14 @@ public class Month extends AppCompatActivity {
         TextView textViewName = findViewById(R.id.txTitleSubject);
         textViewName.setText(subjectName);
 
-Adapter_Month adapter_month = new Adapter_Month(this,months);
+Adapter_Month adapter_month = new Adapter_Month(this, months, new Adapter_Month.onClick() {
+    @Override
+    public void inClickedMonth(int position) {
+        Intent intent = new Intent(Month.this,Show_Month2.class);
+        intent.putExtra("monthName",months[position]);
+        startActivity(intent);
+    }
+});
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvMonth.setLayoutManager(layoutManager);
