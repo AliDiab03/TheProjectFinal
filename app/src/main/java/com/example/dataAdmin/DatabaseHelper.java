@@ -198,6 +198,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowId > 0;
     }
 
+    public boolean deleteStudent(String id) {
+        SQLiteDatabase db = getWritableDatabase();
+        int rowId = db.delete(Student.TABLE_NAME, Student.COL_ID + "=?", new String[]{id});
+        return rowId > 0;
+    }
 
 
 }

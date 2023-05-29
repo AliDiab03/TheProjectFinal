@@ -36,6 +36,7 @@ public class Home extends AppCompatActivity {
     Adapter_AddSubject addSubject;
     RecyclerView rcSubject;
     ImageView imgAddSubject, imgAddStudent;
+    Button btnClickAllStd ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,20 @@ public class Home extends AppCompatActivity {
         txAddSubject = findViewById(R.id.txAddSubject);
         txAddStudent = findViewById(R.id.txAddStudent);
         imgAddStudent = findViewById(R.id.imgAddStudent);
+        btnClickAllStd = findViewById(R.id.btnClickAllStd);
         databaseHelper = new DatabaseHelper(this);
+
+
+
+        btnClickAllStd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Home.this,All_Students.class);
+                startActivity(intent);
+
+            }
+        });
 
         // استدعاء الوظيفة للحصول على بيانات الـ Admin من قاعدة البيانات
         Admin admin = databaseHelper.getAdmin();
