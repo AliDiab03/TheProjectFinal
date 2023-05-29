@@ -51,18 +51,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return row > 0;
     }
 
-
-
-    public int insertStudent(String firstName, String lastName, String birthDate) {
+    public int insertStudent(String firsName, String lastName, String birthDate) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Student.COL_FIRST_NAME, firstName);
+        values.put(Student.COL_FIRST_NAME, firsName);
         values.put(Student.COL_LAST_NAME, lastName);
         values.put(Student.COL_BIRTH_DATE, birthDate);
         long row = database.insert(Student.TABLE_NAME, null, values);
-        return (int) row;
-    }
+        return (int)row;
 
+    }
 
     public boolean insertSubject(String name) {
         SQLiteDatabase database = getWritableDatabase();
@@ -81,8 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return row > 0;
 
     }
-
-
 
     public boolean insertPresence(String month, String day, int studentId, int subjectId) {
         SQLiteDatabase database = getWritableDatabase();
@@ -145,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(Student.CREATE_TABLE,columns,null,null,null,null,null);
         if (cursor.moveToFirst()){
             do {
-                int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
+             int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
                 String firstName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
                 String lastName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
                 String dateOfBirth = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
