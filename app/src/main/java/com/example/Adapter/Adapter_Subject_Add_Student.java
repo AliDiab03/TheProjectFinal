@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Subject_Add_Student.myHolder> {
 
-    Context context ;
-    ArrayList<Subject>dataSubject ;
-    isClicked isClicked ;
+    Context context;
+    ArrayList<Subject> dataSubject;
+    isClicked isClicked;
 
     public Adapter_Subject_Add_Student(Context context, ArrayList<Subject> dataSubject, isClicked isClicked) {
         this.context = context;
         this.dataSubject = dataSubject;
-        this.isClicked = isClicked ;
+        this.isClicked = isClicked;
     }
 
     public Context getContext() {
@@ -46,7 +46,7 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
     @NonNull
     @Override
     public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.iteam_add_recycle_add_student_1,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.iteam_add_recycle_add_student_1, parent, false);
 
         return new myHolder(view);
     }
@@ -57,7 +57,7 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
         holder.ckBoxSubj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClicked != null){
+                if (isClicked != null) {
                     isClicked.onCheckBoxClick(holder.getAdapterPosition());
                 }
             }
@@ -65,23 +65,23 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
     }
 
 
-
     @Override
     public int getItemCount() {
         return dataSubject.size();
     }
 
-    public class myHolder extends RecyclerView.ViewHolder{
-        TextView txSubject ;
-        CheckBox ckBoxSubj ;
+    public class myHolder extends RecyclerView.ViewHolder {
+        TextView txSubject;
+        CheckBox ckBoxSubj;
+
         public myHolder(@NonNull View itemView) {
             super(itemView);
             txSubject = itemView.findViewById(R.id.txSubject);
-            ckBoxSubj =  itemView.findViewById(R.id.ckBoxSubj);
+            ckBoxSubj = itemView.findViewById(R.id.ckBoxSubj);
         }
     }
 
     public interface isClicked {
-        void onCheckBoxClick (int position);
+        void onCheckBoxClick(int position);
     }
 }

@@ -44,10 +44,11 @@ public class Add_Student extends AppCompatActivity {
 
         ArrayList<Subject> subjects = databaseHelper.getSubjects();
 
+
         Adapter_Subject_Add_Student adapterSubjectAddStudent = new Adapter_Subject_Add_Student(this, subjects, new Adapter_Subject_Add_Student.isClicked() {
             @Override
             public void onCheckBoxClick(int position) {
-                Toast.makeText(Add_Student.this, "" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_Student.this, ""+subjects.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
         rcSubject1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -116,7 +117,6 @@ public class Add_Student extends AppCompatActivity {
 
                     DatabaseHelper databaseHelper = new DatabaseHelper(Add_Student.this);
                     databaseHelper.insertStudent(firstName, lastName, date);
-
                     Toast.makeText(Add_Student.this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
