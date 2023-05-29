@@ -28,7 +28,7 @@ public class Adapter_students extends RecyclerView.Adapter<Adapter_students.myHo
     @Override
     public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //iteam  تذكر غير
-        View view = LayoutInflater.from(context).inflate(R.layout.iteam_add_recycle_add_student_1,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.iteam_all_student,parent,false);
 
         return new myHolder(view);
     }
