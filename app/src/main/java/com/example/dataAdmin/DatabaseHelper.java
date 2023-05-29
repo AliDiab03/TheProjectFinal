@@ -51,16 +51,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return row > 0;
     }
 
-    public boolean insertStudent(String firsName, String lastName, String birthDate) {
+
+
+    public int insertStudent(String firstName, String lastName, String birthDate) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Student.COL_FIRST_NAME, firsName);
+        values.put(Student.COL_FIRST_NAME, firstName);
         values.put(Student.COL_LAST_NAME, lastName);
         values.put(Student.COL_BIRTH_DATE, birthDate);
         long row = database.insert(Student.TABLE_NAME, null, values);
-        return row > 0;
-
+        return (int) row;
     }
+
 
     public boolean insertSubject(String name) {
         SQLiteDatabase database = getWritableDatabase();
@@ -79,6 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return row > 0;
 
     }
+
+
 
     public boolean insertPresence(String month, String day, int studentId, int subjectId) {
         SQLiteDatabase database = getWritableDatabase();

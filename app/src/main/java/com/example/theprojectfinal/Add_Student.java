@@ -116,15 +116,24 @@ public class Add_Student extends AppCompatActivity {
                 if (isClickAddStd) {
 
                     DatabaseHelper databaseHelper = new DatabaseHelper(Add_Student.this);
-                    databaseHelper.insertStudent(firstName, lastName, date);
-                    Toast.makeText(Add_Student.this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(Add_Student.this, "فشل اضافة طالب", Toast.LENGTH_SHORT).show();
+                    long studentId = databaseHelper.insertStudent(firstName, lastName, date);
+                    if (studentId > 0) {
+                        for (Subject subject : adapterSubjectAddStudent.getDataSubject()) {
+                            boolean isSuccess = databaseHelper.insertStudent_Subject((int) studentId, subject.getId());
+                            if (!isSuccess) {
+                                // حدث خطأ في تسجيل المادة للطالب
+                                Toast.makeText(Add_Student.this, "حدث خطأ في تسجيل المادة للطالب", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        Toast.makeText(Add_Student.this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(Add_Student.this, "فشل اضافة طالب", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-
-
             }
+
         });
 
 
