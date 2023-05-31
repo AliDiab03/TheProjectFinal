@@ -57,6 +57,10 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
         holder.ckBoxSubj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                boolean isChecked = holder.ckBoxSubj.isChecked();
+                dataSubject.get(holder.getAdapterPosition()).setChecked(isChecked); // تحديث حالة التحقق في قائمة المواد
+
                 if (isClicked != null) {
                     isClicked.onCheckBoxClick(holder.getAdapterPosition());
                 }

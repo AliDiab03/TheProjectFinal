@@ -8,13 +8,16 @@ public class Student_Subject {
 
     public static final String TABLE_NAME = "student_subject";
     public static final String COL_ID = "id";
-    public static final String COL_STUDENT_ID = "studentID";
+    public static final String COL_STUDENT_ID = "student_id";
     public static final String COL_SUBJECT_ID = "subject_id";
 
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
             COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_STUDENT_ID + " INTEGER, " +
-            COL_SUBJECT_ID + " INTEGER);";
+            COL_SUBJECT_ID + " INTEGER);"+
+            "FOREIGN KEY (" + COL_STUDENT_ID + ") REFERENCES " + Student.TABLE_NAME + "(" + Student.COL_ID + ")," +
+            "FOREIGN KEY (" + COL_SUBJECT_ID + ") REFERENCES " + Subject.TABLE_NAME + "(" + Subject.COL_ID + ")" +
+            ");";
 
 
     public Student_Subject(int id, int student_id, int subject_id) {

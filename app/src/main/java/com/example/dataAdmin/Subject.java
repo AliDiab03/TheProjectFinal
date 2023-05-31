@@ -3,6 +3,7 @@ package com.example.dataAdmin;
 public class Subject {
     private int id ;
     private String name ;
+    private boolean checked;
 
 
 
@@ -39,5 +40,13 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

@@ -190,6 +190,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return students;
     }
 
+    @SuppressLint("Range")
+    public ArrayList<Student> getStudentsBySubjectId(int subjectId) {
+        ArrayList<Student> students = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + Student.TABLE_NAME + " WHERE " + Student.COL_ID +
+                " IN (SELECT " + Student_Subject.COL_STUDENT_ID + " FROM " + Student_Subject.TABLE_NAME +
+                " WHERE " + Student_Subject.COL_SUBJECT_ID + " = " + subjectId + ")";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int studentId = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
+              String studentFName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
+                String studentLName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
+                String studentDate = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
+                Student student = new Student(studentId,studentFName,studentLName,studentDate);
+                students.add(student);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return students;
+    }
+
+
 
 
     public boolean deleteSubject(String id) {
