@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.Adapter.Adapter_AllStudent_Home;
@@ -33,6 +34,17 @@ public class All_Students extends AppCompatActivity {
                     students.remove(position);
                     allStudentHome.notifyItemRemoved(position);
                 }
+            }
+
+            @Override
+            public void isClicked(int id, int position) {
+                Intent intent = new Intent(All_Students.this,Add_student_1.class);
+                Student student = students.get(position);
+                intent.putExtra("id", student.getId());
+                intent.putExtra("firstName", student.getFirstName());
+                intent.putExtra("lastName", student.getLastName());
+                intent.putExtra("birthdate", student.getBirthdate());
+                startActivity(intent);
             }
         });
 

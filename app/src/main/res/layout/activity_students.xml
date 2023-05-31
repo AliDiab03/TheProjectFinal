@@ -18,18 +18,27 @@
         android:layout_marginTop="50dp"
         android:textStyle="bold"/>
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAllSujStd"
+    <RelativeLayout
+        android:id="@+id/relativAllStdSub"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@+id/textStringAllStudent"
-        android:layout_marginTop="30dp"></androidx.recyclerview.widget.RecyclerView>
+android:layout_marginTop="50dp"
+        android:layout_height="480dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAllSujStd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"></androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+
+
+
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="@string/string_Attendanceregistration"
         android:layout_alignParentBottom="true"

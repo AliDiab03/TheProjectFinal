@@ -16,10 +16,12 @@ import com.example.theprojectfinal.R;
 public class Adapter_Show_Day_Month extends RecyclerView.Adapter<Adapter_Show_Day_Month.myHolder> {
     Context context ;
     String [] day ;
+    itemClick itemClick ;
 
-    public Adapter_Show_Day_Month(Context context, String[] day) {
+    public Adapter_Show_Day_Month(Context context, String[] day,itemClick itemClick ) {
         this.context = context;
         this.day = day;
+        this.itemClick = itemClick ;
     }
 
     @NonNull
@@ -34,6 +36,12 @@ public class Adapter_Show_Day_Month extends RecyclerView.Adapter<Adapter_Show_Da
     public void onBindViewHolder(@NonNull myHolder holder, int position) {
          String days = day[position];
          holder.btnShowDay.setText(days);
+         holder.btnShowDay.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 itemClick.isClicked(holder.getAdapterPosition());
+             }
+         });
     }
 
     @Override
@@ -47,5 +55,8 @@ public class Adapter_Show_Day_Month extends RecyclerView.Adapter<Adapter_Show_Da
             super(itemView);
             btnShowDay =  itemView.findViewById(R.id.btnShowDay);
         }
+    }
+    public interface itemClick{
+        void isClicked (int position);
     }
 }

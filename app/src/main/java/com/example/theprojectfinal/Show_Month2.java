@@ -26,7 +26,13 @@ public class Show_Month2 extends AppCompatActivity {
         String[] days = getDaysOfMonth(monthName);
         RecyclerView rcSeeDayMonth = findViewById(R.id.rcSeeDayMonth);
 
-        Adapter_Show_Day_Month adapter_show_day_month = new Adapter_Show_Day_Month(getApplicationContext(),days);
+        Adapter_Show_Day_Month adapter_show_day_month = new Adapter_Show_Day_Month(getApplicationContext(), days, new Adapter_Show_Day_Month.itemClick() {
+            @Override
+            public void isClicked(int position) {
+                Intent intent1 = new Intent(Show_Month2.this,Students.class);
+                startActivity(intent1);
+            }
+        });
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,5,RecyclerView.VERTICAL,false);
         rcSeeDayMonth.setLayoutManager(layoutManager);
         rcSeeDayMonth.setAdapter(adapter_show_day_month);

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,14 @@ public class Adapter_AllStudent_Home extends RecyclerView.Adapter<Adapter_AllStu
                isClicked.isDeleted(students.get(holder.getAdapterPosition()).getId(), holder.getAdapterPosition());
            }
        });
+       holder.coordinatorStudent.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               int position = holder.getAdapterPosition();
+               int studentId = students.get(position).getId();
+               isClicked.isClicked(studentId,position);
+           }
+       });
 
     }
 
@@ -60,10 +69,12 @@ public class Adapter_AllStudent_Home extends RecyclerView.Adapter<Adapter_AllStu
     public class myHolder extends RecyclerView.ViewHolder{
         TextView txStudent ;
         ImageView imgDeleteStd ;
+        RelativeLayout coordinatorStudent ;
         public myHolder(@NonNull View itemView) {
             super(itemView);
             txStudent = itemView.findViewById(R.id.txStudent);
             imgDeleteStd = itemView.findViewById(R.id.imgDeleteStd);
+            coordinatorStudent = itemView.findViewById(R.id.coordinatorStudent);
         }
     }
 
@@ -75,6 +86,7 @@ public class Adapter_AllStudent_Home extends RecyclerView.Adapter<Adapter_AllStu
 
   public   interface isClicked{
         void isDeleted (int id , int position);
+        void isClicked(int id , int position);
     }
 
 }
