@@ -58,7 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Student.COL_LAST_NAME, lastName);
         values.put(Student.COL_BIRTH_DATE, birthDate);
         long row = database.insert(Student.TABLE_NAME, null, values);
-        return (int)row;
+        return (int) row;
 
     }
 
@@ -134,23 +134,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public ArrayList<Student>getStudent(){
-        ArrayList<Student>students = new ArrayList<>();
+    public ArrayList<Student> getStudent() {
+        ArrayList<Student> students = new ArrayList<>();
         SQLiteDatabase database = getReadableDatabase();
-        String[] columns = {Student.COL_ID,Student.COL_FIRST_NAME,Student.COL_LAST_NAME,Student.COL_BIRTH_DATE};
-        Cursor cursor = database.query(Student.CREATE_TABLE,columns,null,null,null,null,null);
-        if (cursor.moveToFirst()){
+        String[] columns = {Student.COL_ID, Student.COL_FIRST_NAME, Student.COL_LAST_NAME, Student.COL_BIRTH_DATE};
+        Cursor cursor = database.query(Student.CREATE_TABLE, columns, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
             do {
-             int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
+                int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
                 String firstName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
                 String lastName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
                 String dateOfBirth = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
-                Student student = new Student(id,firstName,lastName,dateOfBirth);
+                Student student = new Student(id, firstName, lastName, dateOfBirth);
                 students.add(student);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         cursor.close();
-        return students ;
+        return students;
     }
 
     @SuppressLint("Range")
@@ -170,6 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return subjects;
     }
+
     @SuppressLint("Range")
     public ArrayList<Student> getStudents() {
         ArrayList<Student> students = new ArrayList<>();
@@ -203,10 +204,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 int studentId = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
-              String studentFName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
+                String studentFName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
                 String studentLName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
                 String studentDate = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
-                Student student = new Student(studentId,studentFName,studentLName,studentDate);
+                Student student = new Student(studentId, studentFName, studentLName, studentDate);
                 students.add(student);
             } while (cursor.moveToNext());
         }
@@ -214,8 +215,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return students;
     }
-
-
 
 
     public boolean deleteSubject(String id) {
