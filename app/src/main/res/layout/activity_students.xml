@@ -11,19 +11,20 @@
         android:id="@+id/textStringAllStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:text="@string/string_nameStudents"
         android:textColor="@color/black"
         android:textSize="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/relativAllStdSub"
         android:layout_width="match_parent"
+        android:layout_height="480dp"
         android:layout_below="@+id/textStringAllStudent"
-android:layout_marginTop="50dp"
-        android:layout_height="480dp">
+        android:layout_marginTop="50dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAllSujStd"
             android:layout_width="match_parent"
@@ -33,20 +34,17 @@ android:layout_marginTop="50dp"
     </RelativeLayout>
 
 
-
-
-
-
     <Button
+        android:id="@+id/attendanceBtn"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="@string/string_Attendanceregistration"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
 
-        android:textSize="15sp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/shap_button"
+        android:text="@string/string_Attendanceregistration"
         android:textColor="@color/white"
-        android:layout_marginBottom="50dp"></Button>
+        android:textSize="15sp"></Button>
 
 </RelativeLayout>

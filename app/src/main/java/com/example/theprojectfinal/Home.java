@@ -36,7 +36,7 @@ public class Home extends AppCompatActivity {
     Adapter_AddSubject addSubject;
     RecyclerView rcSubject;
     ImageView imgAddSubject, imgAddStudent;
-    Button btnClickAllStd ;
+    Button btnClickAllStd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +56,11 @@ public class Home extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
 
-
         btnClickAllStd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Home.this,All_Students.class);
+                Intent intent = new Intent(Home.this, All_Students.class);
                 startActivity(intent);
 
             }
@@ -158,6 +157,14 @@ public class Home extends AppCompatActivity {
                     builder.show();
 
 
+                }
+
+                @Override
+                public void isClicked(Subject subject) {
+                    Intent intent = new Intent(Home.this, Month.class);
+                    intent.putExtra("subjectName", subject.getName());
+
+                    startActivity(intent);
                 }
             });
 

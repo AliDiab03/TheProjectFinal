@@ -16,8 +16,9 @@ public class Student_Subject {
             COL_STUDENT_ID + " INTEGER, " +
             COL_SUBJECT_ID + " INTEGER, " +
             "FOREIGN KEY (" + COL_STUDENT_ID + ") REFERENCES " + Student.TABLE_NAME + "(" + Student.COL_ID + ")" +
-            ");";
+            "FOREIGN KEY (" + COL_SUBJECT_ID + ") REFERENCES " + Subject.TABLE_NAME + "(" + Subject.COL_ID + ")" +
 
+            ");";
 
 
     public Student_Subject(int id, int student_id, int subject_id) {

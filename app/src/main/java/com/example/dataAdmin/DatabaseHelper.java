@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "project_final_db";
@@ -191,29 +192,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return students;
     }
 
-    @SuppressLint("Range")
-    public ArrayList<Student> getStudentsBySubjectId(int subjectId) {
-        ArrayList<Student> students = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + Student.TABLE_NAME + " WHERE " + Student.COL_ID +
-                " IN (SELECT " + Student_Subject.COL_STUDENT_ID + " FROM " + Student_Subject.TABLE_NAME +
-                " WHERE " + Student_Subject.COL_SUBJECT_ID + " = " + subjectId + ")";
 
-        Cursor cursor = db.rawQuery(query, null);
+    @SuppressLint("Range")
+    public List<Student> getStudentsBySubject(int subjectId) {
+        List<Student> students = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + Student.TABLE_NAME + " WHERE " + Student.COL_ID + " IN (SELECT " + Student_Subject.COL_STUDENT_ID + " FROM " + Student_Subject.TABLE_NAME + " WHERE " + Student_Subject.COL_SUBJECT_ID + " = " + subjectId + ")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                int studentId = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
-                String studentFName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
-                String studentLName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
-                String studentDate = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
-                Student student = new Student(studentId, studentFName, studentLName, studentDate);
+                int id = cursor.getInt(cursor.getColumnIndex(Student.COL_ID));
+                String fName = cursor.getString(cursor.getColumnIndex(Student.COL_FIRST_NAME));
+                String lName = cursor.getString(cursor.getColumnIndex(Student.COL_LAST_NAME));
+
+                String date = cursor.getString(cursor.getColumnIndex(Student.COL_BIRTH_DATE));
+                Student student = new Student(id, fName, lName, date);
                 students.add(student);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
+        db.close();
         return students;
+    }
+
+
+    @SuppressLint("Range")
+    public List<Subject> getSubjectsByStudent(int studentId) {
+        List<Subject> subjects = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + Subject.TABLE_NAME + " WHERE " + Subject.COL_ID + " IN (SELECT " + Student_Subject.COL_SUBJECT_ID + " FROM " + Student_Subject.TABLE_NAME + " WHERE " + Student_Subject.COL_STUDENT_ID + " = " + studentId + ")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex(Subject.COL_ID));
+                String name = cursor.getString(cursor.getColumnIndex(Subject.COL_NAME));
+                Subject subject = new Subject(id, name);
+                subjects.add(subject);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return subjects;
     }
 
 

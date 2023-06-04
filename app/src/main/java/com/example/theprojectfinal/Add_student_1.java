@@ -1,20 +1,30 @@
 package com.example.theprojectfinal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.Adapter.Adapter_Subject_Registered;
+import com.example.dataAdmin.DatabaseHelper;
+import com.example.dataAdmin.Subject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Add_student_1 extends AppCompatActivity {
 
-    TextView tvFullName ,tvDateOfBirth ,tvAge ;
+    TextView tvFullName, tvDateOfBirth, tvAge;
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,7 @@ public class Add_student_1 extends AppCompatActivity {
         tvFullName = findViewById(R.id.tvFullName);
         tvDateOfBirth = findViewById(R.id.tvDateOfBirth);
         tvAge = findViewById(R.id.tvAge);
+        databaseHelper = new DatabaseHelper(this);
 
 
         Intent intent = getIntent();
@@ -36,10 +47,26 @@ public class Add_student_1 extends AppCompatActivity {
             tvFullName.setText(firstName + " " + lastName);
             tvDateOfBirth.setText(birthdate);
 
+            // استدعاء الدالة لجلب المواد المسجلة للطالب وعرضها
+            showRegisteredSubjects(id);
+        }
 
-      // لا تنسى دالة حساب العنر
 
-        }}
+    }
+
+    private void showRegisteredSubjects(int studentId) {
+        List<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
+
+        RecyclerView recyclerView = findViewById(R.id.rvStdSignSubj);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Adapter_Subject_Registered adapter = new Adapter_Subject_Registered(Add_student_1.this, registeredSubjects, new Adapter_Subject_Registered.isClick() {
+            @Override
+            public void isClicked(int id, int position) {
+                Toast.makeText(Add_student_1.this, "isClicked" + id, Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
 
 
 }

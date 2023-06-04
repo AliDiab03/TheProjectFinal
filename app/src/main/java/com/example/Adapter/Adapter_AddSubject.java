@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,14 +49,11 @@ onItemClick onItemClick ;
                 }
             }
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+        holder.relativSubj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // الانتقال إلى النشاط الثاني
-                Intent intent = new Intent(context, Month.class);
-                // قم بتمرير أي بيانات إضافية إلى النشاط الثاني إذا لزم الأمر
-                intent.putExtra("subjectName", data.get(holder.getAdapterPosition()).getName());
-                context.startActivity(intent);
+                onItemClick.isClicked(data.get(holder.getAdapterPosition()));
             }
         });
 
@@ -70,11 +68,13 @@ onItemClick onItemClick ;
 
         TextView iteamTxSubject ;
         ImageView iteamDeleteStudent ;
+        RelativeLayout relativSubj ;
 
         public myHolder(@NonNull View itemView) {
             super(itemView);
                    iteamTxSubject = itemView.findViewById(R.id.iteamTxSubject);
             iteamDeleteStudent =  itemView.findViewById(R.id.iteamDeleteStudent);
+            relativSubj = itemView.findViewById(R.id.relativSubj);
         }
     }
 
@@ -86,5 +86,6 @@ onItemClick onItemClick ;
 
     public interface onItemClick{
 void onDelete (int id , int position);
+void isClicked(Subject subject);
     }
 }
