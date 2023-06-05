@@ -18,15 +18,29 @@
         android:layout_marginTop="50dp"
         android:textStyle="bold"/>
 
+
+    <EditText
+        android:id="@+id/edSearch"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/textStringAllStudent"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_10ssp"
+        android:inputType="textPersonName"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_marginEnd="@dimen/_10ssp"
+        android:background="@drawable/shap_edittext"
+        android:hint="ابحث عن اسم الطالب"
+        android:textColor="#676767" />
     <RelativeLayout
         android:id="@+id/linearAllStudent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_10ssp"
         android:background="@drawable/shap_layout"
         android:orientation="vertical"
         android:padding="10dp"
-        android:layout_below="@+id/textStringAllStudent">
+        android:layout_below="@+id/edSearch">
 
 
 

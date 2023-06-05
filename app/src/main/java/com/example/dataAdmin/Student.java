@@ -60,6 +60,10 @@ public class Student implements Serializable {
         this.birthdate = birthdate;
     }
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     public boolean isSelected() {
         return selected;
     }
