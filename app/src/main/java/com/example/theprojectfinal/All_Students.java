@@ -1,5 +1,6 @@
 package com.example.theprojectfinal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,14 +9,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.Adapter.Adapter_AllStudent_Home;
 import com.example.dataAdmin.DatabaseHelper;
 import com.example.dataAdmin.Student;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class All_Students extends AppCompatActivity {
     Adapter_AllStudent_Home allStudentHome;
@@ -24,6 +30,8 @@ public class All_Students extends AppCompatActivity {
     ArrayList<Student> students;
     ArrayList<Student> filteredStudents; // قائمة الطلاب المصفاة بناءً على نتائج البحث
     DatabaseHelper databaseHelper;
+    boolean isSortByName = false;
+    boolean isSortByDate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +96,7 @@ public class All_Students extends AppCompatActivity {
 
             for (Student student : students) {
                 if (student.getFirstName().toLowerCase().contains(searchQuery) ||
-                        student.getLastName().toLowerCase().contains(searchQuery)||student.getFullName().toLowerCase().contains(searchQuery.toLowerCase()) || student.getFullName().equalsIgnoreCase(searchQuery)) {
+                        student.getLastName().toLowerCase().contains(searchQuery) || student.getFullName().toLowerCase().contains(searchQuery.toLowerCase()) || student.getFullName().equalsIgnoreCase(searchQuery)) {
                     filteredStudents.add(student); // يتم إضافة الطلاب الذين يطابقون سلسلة البحث إلى القائمة المصفاة
                 }
             }
@@ -96,4 +104,55 @@ public class All_Students extends AppCompatActivity {
 
         allStudentHome.notifyDataSetChanged(); // يتم إعلام الـ Adapter بتغييرات البيانات
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_students, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuFilterName:
+                isSortByName = !isSortByName; // تبديل حالة الفرز بين تصاعدي وتنازلي
+                sortStudentsByName(); // استدعاء طريقة الفرز حسب الاسم
+                return true;
+            case R.id.menuFilterDate:
+                Toast.makeText(this, "فرز حسب تاريخ الاضافة", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void sortStudentsByName() {
+        if (isSortByName) {
+            // قائمة مؤقتة للاحتفاظ بالطلاب قبل الفرز
+            ArrayList<Student> tempStudents = new ArrayList<>(filteredStudents);
+
+            // تنفيذ عملية الفرز حسب الاسم
+            Collections.sort(tempStudents, new Comparator<Student>() {
+                @Override
+                public int compare(Student student1, Student student2) {
+                    return student1.getFullName().compareToIgnoreCase(student2.getFullName());
+                }
+            });
+
+            filteredStudents.clear();
+            filteredStudents.addAll(tempStudents);
+            allStudentHome.notifyDataSetChanged(); // يتم إعلام الـ Adapter بالتغييرات في البيانات
+        } else {
+            // إعادة تهيئة القائمة المصفاة لتحتوي على ا لطلاب بنفس ترتيب البداية
+            filteredStudents.clear();
+            filteredStudents.addAll(students);
+            allStudentHome.notifyDataSetChanged(); // يتم إعلام الـ Adapter بالتغييرات في البيانات
+        }
+    }
+
+
+
+
 }

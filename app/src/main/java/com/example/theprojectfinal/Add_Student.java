@@ -97,14 +97,14 @@ public class Add_Student extends AppCompatActivity {
                 if (firstName.isEmpty()) {
                     edTextFirstName.setError("الرجاء ادخال الاسم الاول للطالب");
                     isClickAddStd = false;
-                } else if (firstName.length() >= 10) {
+                } else if (firstName.length() >= 20) {
                     edTextFirstName.setError("الرجاء ادخال اسم طالب صالح");
                     isClickAddStd = false;
                 }
                 if (lastName.isEmpty()) {
                     edTextLastName.setError("الرجاء ادخال اسم الاخير للطالب");
                     isClickAddStd = false;
-                } else if (lastName.length() >= 10) {
+                } else if (lastName.length() >= 20) {
                     edTextLastName.setError("الرجاء ادخال الاسم الاخير بشكل صحيح");
                     isClickAddStd = false;
                 }

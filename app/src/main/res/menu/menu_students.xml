@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:id="@+id/menuFilterName"
+        android:title="فرز حسب الاسم" />
+    <item android:id="@+id/menuFilterDate"
+        android:title="فرز حسب تاريخ الاضافة" />
+
+</menu>
