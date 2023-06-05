@@ -250,6 +250,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return attendedDays;
     }
 
+    public int getSubjectTotalSessions(int subjectId) {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Presence.COL_DAY};
+        String selection = Presence.COL_SUBJECT_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(subjectId)};
+        Cursor cursor = database.query(Presence.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        int totalSessions = cursor.getCount();
+        cursor.close();
+        return totalSessions;
+    }
+
+    public int getStudentAttendedSessions(int studentId, int subjectId) {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Presence.COL_DAY};
+        String selection = Presence.COL_STUDENT_ID + " = ? AND " + Presence.COL_SUBJECT_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(studentId), String.valueOf(subjectId)};
+        Cursor cursor = database.query(Presence.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        int attendedSessions = cursor.getCount();
+        cursor.close();
+        return attendedSessions;
+    }
+
+
+
+    public float calculateAttendancePercentage(int studentId, int subjectId) {
+        int totalSessions = getSubjectTotalSessions( subjectId);
+        int attendedSessions = getStudentAttendedSessions(studentId, subjectId);
+
+        if (totalSessions == 0) {
+            return 0; // تجنب القسمة على الصفر
+        }
+
+        float attendancePercentage = (float) attendedSessions / totalSessions * 100;
+        return attendancePercentage;
+    }
+
+
+
 
 
 

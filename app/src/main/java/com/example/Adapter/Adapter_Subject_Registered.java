@@ -8,23 +8,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dataAdmin.DatabaseHelper;
 import com.example.dataAdmin.Subject;
 import com.example.theprojectfinal.R;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Adapter_Subject_Registered extends RecyclerView.Adapter<Adapter_Subject_Registered.myHolder> {
 
     Context context ;
-    ArrayList<Subject> subjects ;
-    isClick isClick ;
-    public Adapter_Subject_Registered(Context context, ArrayList<Subject> subjects , isClick isClick) {
+    List<Subject>subjects ;
+    DatabaseHelper databaseHelper ;
+    int studentId ;
+
+    public Adapter_Subject_Registered(Context context, List<Subject> subjects , int studentId ) {
         this.context = context;
         this.subjects = subjects;
-        this.isClick = isClick;
+        this.studentId = studentId;
+        databaseHelper = new DatabaseHelper(context);
+
     }
 
     @NonNull
@@ -38,13 +44,18 @@ public class Adapter_Subject_Registered extends RecyclerView.Adapter<Adapter_Sub
     public void onBindViewHolder(@NonNull myHolder holder, int position) {
         Subject subject = subjects.get(position);
         holder.txSubj.setText(subject.getName());
-        holder.coordinatorTx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isClick.isClicked(subjects.get(holder.getAdapterPosition()).getId(), holder.getAdapterPosition());
-            }
-        });
+        float attendancePercentage = databaseHelper.calculateAttendancePercentage(studentId, subject.getId());
+        holder.txShowTotalSubj.setText(String.format(Locale.getDefault(), "%.2f%%", attendancePercentage));
+
+        if (attendancePercentage >= 85) {
+            holder.txShowTotalSubj.setTextColor(ContextCompat.getColor(context, R.color.green));
+        } else if (attendancePercentage >= 50) {
+            holder.txShowTotalSubj.setTextColor(ContextCompat.getColor(context, R.color.black));
+        } else if (attendancePercentage < 50) {
+            holder.txShowTotalSubj.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
     }
+
 
     @Override
     public int getItemCount() {
@@ -52,15 +63,16 @@ public class Adapter_Subject_Registered extends RecyclerView.Adapter<Adapter_Sub
     }
 
     public class myHolder extends RecyclerView.ViewHolder{
-        TextView txSubj ;
-        RelativeLayout coordinatorTx ;
+        TextView txSubj  , txShowTotalSubj ;
+
         public myHolder(@NonNull View itemView) {
             super(itemView);
             txSubj =itemView.findViewById(R.id.txShowSubject);
-            coordinatorTx =  itemView.findViewById(R.id.coordinatorTx);
+            txShowTotalSubj = itemView.findViewById(R.id.txShowTotalSubj);
         }
     }
-    public interface isClick {
-        void isClicked(int id , int position);
-    }
+
+
+
+
 }

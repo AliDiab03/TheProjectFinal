@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/string_addStd"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="@dimen/_25ssp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:textStyle="bold"/>

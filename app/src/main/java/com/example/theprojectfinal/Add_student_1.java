@@ -55,16 +55,12 @@ public class Add_student_1 extends AppCompatActivity {
     }
 
     private void showRegisteredSubjects(int studentId) {
-        ArrayList<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
+        List<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
 
         RecyclerView recyclerView = findViewById(R.id.rvStdSignSubj);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Adapter_Subject_Registered adapter = new Adapter_Subject_Registered(Add_student_1.this, registeredSubjects, new Adapter_Subject_Registered.isClick() {
-            @Override
-            public void isClicked(int id, int position) {
-                Toast.makeText(Add_student_1.this, "isClicked" + id, Toast.LENGTH_SHORT).show();
-            }
-        });
+        Adapter_Subject_Registered adapter = new Adapter_Subject_Registered(Add_student_1.this, registeredSubjects , studentId );
+
         recyclerView.setAdapter(adapter);
     }
 
