@@ -194,8 +194,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     @SuppressLint("Range")
-    public List<Student> getStudentsBySubject(int subjectId) {
-        List<Student> students = new ArrayList<>();
+    public ArrayList<Student> getStudentsBySubject(int subjectId) {
+        ArrayList<Student> students = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + Student.TABLE_NAME + " WHERE " + Student.COL_ID + " IN (SELECT " + Student_Subject.COL_STUDENT_ID + " FROM " + Student_Subject.TABLE_NAME + " WHERE " + Student_Subject.COL_SUBJECT_ID + " = " + subjectId + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -219,8 +219,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     @SuppressLint("Range")
-    public List<Subject> getSubjectsByStudent(int studentId) {
-        List<Subject> subjects = new ArrayList<>();
+    public ArrayList<Subject> getSubjectsByStudent(int studentId) {
+        ArrayList<Subject> subjects = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + Subject.TABLE_NAME + " WHERE " + Subject.COL_ID + " IN (SELECT " + Student_Subject.COL_SUBJECT_ID + " FROM " + Student_Subject.TABLE_NAME + " WHERE " + Student_Subject.COL_STUDENT_ID + " = " + studentId + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -238,6 +238,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return subjects;
     }
+
+    public int getAttendedDays(int subjectId, String monthName) {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] columns = {Presence.COL_DAY};
+        String selection = Presence.COL_SUBJECT_ID + " = ? AND " + Presence.COL_MONTH + " = ?";
+        String[] selectionArgs = {String.valueOf(subjectId), monthName};
+        Cursor cursor = database.query(Presence.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        int attendedDays = cursor.getCount();
+        cursor.close();
+        return attendedDays;
+    }
+
+
+
 
 
     public boolean deleteSubject(String id) {

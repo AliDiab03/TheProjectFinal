@@ -7,6 +7,7 @@ public class Student implements Serializable {
     private String firstName;
     private String lastName;
     private String birthdate;
+    private boolean selected;
 
 
     public static final String TABLE_NAME = "student";
@@ -24,6 +25,7 @@ public class Student implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
+        this.selected = false;
     }
 
     public int getId() {
@@ -56,5 +58,13 @@ public class Student implements Serializable {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

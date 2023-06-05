@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dataAdmin.Subject;
 import com.example.theprojectfinal.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter_Subject_Registered extends RecyclerView.Adapter<Adapter_Subject_Registered.myHolder> {
 
     Context context ;
-    List<Subject>subjects ;
+    ArrayList<Subject> subjects ;
     isClick isClick ;
-    public Adapter_Subject_Registered(Context context, List<Subject> subjects , isClick isClick) {
+    public Adapter_Subject_Registered(Context context, ArrayList<Subject> subjects , isClick isClick) {
         this.context = context;
         this.subjects = subjects;
         this.isClick = isClick;

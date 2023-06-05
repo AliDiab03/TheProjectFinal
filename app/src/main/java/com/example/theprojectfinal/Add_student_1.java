@@ -55,7 +55,7 @@ public class Add_student_1 extends AppCompatActivity {
     }
 
     private void showRegisteredSubjects(int studentId) {
-        List<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
+        ArrayList<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
 
         RecyclerView recyclerView = findViewById(R.id.rvStdSignSubj);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

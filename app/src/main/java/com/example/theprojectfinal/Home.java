@@ -163,8 +163,13 @@ public class Home extends AppCompatActivity {
                 public void isClicked(Subject subject) {
                     Intent intent = new Intent(Home.this, Month.class);
                     intent.putExtra("subjectName", subject.getName());
+                    intent.putExtra("subjectId", subject.getId());
 
                     startActivity(intent);
+
+//                    Intent intent = new Intent(Home.this,Students.class);
+//                    intent.putExtra("studentId",subject.getId());
+//                    startActivity(intent);
                 }
             });
 
