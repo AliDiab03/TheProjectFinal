@@ -12,6 +12,7 @@ import com.example.Adapter.Adapter_Month;
 
 public class Month extends AppCompatActivity {
     RecyclerView rvMonth;
+    // تعريف مصوفة الاشهر
     String months[] = {"يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"};
 
 
@@ -21,7 +22,7 @@ public class Month extends AppCompatActivity {
         setContentView(R.layout.activity_month);
         rvMonth = findViewById(R.id.rvMonth);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent();// استقبال البيانات المرسلة
         String subjectName = intent.getStringExtra("subjectName");
         int subjectId = intent.getIntExtra("subjectId", 0);
 
@@ -30,10 +31,10 @@ public class Month extends AppCompatActivity {
         TextView textViewName = findViewById(R.id.txTitleSubject);
         textViewName.setText(subjectName);
 
-        Adapter_Month adapter_month = new Adapter_Month(this, months, new Adapter_Month.onClick() {
+        Adapter_Month adapter_month = new Adapter_Month(this, months, new Adapter_Month.onClick() { // تهيشة الادابتر الاشهر
             @Override
             public void inClickedMonth(int position) {
-                Intent intent = new Intent(Month.this, Show_Month2.class);
+                Intent intent = new Intent(Month.this, Show_Month2.class); // وظيفته اذا نقر على شهر من الاشهر ينقله
                 intent.putExtra("monthName", months[position]);
                 intent.putExtra("subjectId", subjectId);
                 startActivity(intent);

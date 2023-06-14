@@ -40,7 +40,7 @@ public class Add_student_1 extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); // حتى نستقبل البيانات المرسلة
         if (intent != null) {
             int id = intent.getIntExtra("id", 0);
             String firstName = intent.getStringExtra("firstName");
@@ -58,11 +58,11 @@ public class Add_student_1 extends AppCompatActivity {
     }
 
     private void showRegisteredSubjects(int studentId) {
-        List<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId);
+        ArrayList<Subject> registeredSubjects = databaseHelper.getSubjectsByStudent(studentId); // تعريف اري لست لاستعلام الموادالمسجلة للطالب
 
         RecyclerView recyclerView = findViewById(R.id.rvStdSignSubj);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Adapter_Subject_Registered adapter = new Adapter_Subject_Registered(Add_student_1.this, registeredSubjects , studentId );
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // لاضافة شكل التصميم
+        Adapter_Subject_Registered adapter = new Adapter_Subject_Registered(Add_student_1.this, registeredSubjects , studentId );//تهيئة الريسايكل
 
         recyclerView.setAdapter(adapter);
     }

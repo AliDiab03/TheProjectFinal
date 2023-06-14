@@ -24,16 +24,16 @@ public class Add_Subject extends AppCompatActivity {
         btnAddSubject = findViewById(R.id.btnAddSubject);
 
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this); // تعريف كائن لقاعدة البيانات
 
 
-        btnAddSubject.setOnClickListener(new View.OnClickListener() {
+        btnAddSubject.setOnClickListener(new View.OnClickListener() { // اعطي حاصية النقر على الزر
             @Override
             public void onClick(View v) {
 
                 boolean isClickSub = true ;
 
-              String nameSubject =  edTextNameSubject.getText().toString();
+              String nameSubject =  edTextNameSubject.getText().toString(); // استخراج القيمة الموجودة داخل الايديت وتحويلها الى نص وتخزيتها كنص
 
 
             if (nameSubject.isEmpty()){
@@ -41,11 +41,11 @@ public class Add_Subject extends AppCompatActivity {
                 isClickSub = false ;
             }
 
-            if (isClickSub){
-                boolean isSuccessInsertSubject =  databaseHelper.insertSubject(nameSubject);
-                if (isSuccessInsertSubject){
-                    finish();
-                }else {
+            if (isClickSub){ // التحقق انه القيمة تكون true
+                boolean isSuccessInsertSubject =  databaseHelper.insertSubject(nameSubject); // استرداد من قاعدة البيانات لادخال المادة في  القاعدة وتخزينها في boolean
+                if (isSuccessInsertSubject){ // التحقق من انه القيمة تم ادخالها بنجاح
+                    finish(); // يتم انهاء الواجهة بعد الاضافة
+                }else { // غير ذلك
                     Toast.makeText(Add_Subject.this, "لقد حدث خطا ما", Toast.LENGTH_SHORT).show();
                 }
             }

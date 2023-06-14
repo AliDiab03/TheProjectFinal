@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 public class Add_Student extends AppCompatActivity {
 
+    // تعريفهم عالميا كي اصلهم من اي مكان
     EditText edTextFirstName, edTextLastName;
     Button btnAddStudent;
     RecyclerView rcSubject1;
@@ -40,22 +41,22 @@ public class Add_Student extends AppCompatActivity {
         edTextDateOfBirth = findViewById(R.id.edTextDateOfBirth);
         btnAddStudent = findViewById(R.id.btnAddStudent);
         rcSubject1 = findViewById(R.id.rcSubject1);
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this); // تعريف قاعدة البيانات اللي حعمل علسها
 
-        ArrayList<Subject> subjects = databaseHelper.getSubjects();
+        ArrayList<Subject> subjects = databaseHelper.getSubjects(); // تعريف اري لست من نوع Subject وبضيف لها من قاعدة بيانات استعلام للمواد المخزنة
 
 
-        Adapter_Subject_Add_Student adapterSubjectAddStudent = new Adapter_Subject_Add_Student(this, subjects, new Adapter_Subject_Add_Student.isClicked() {
+        Adapter_Subject_Add_Student adapterSubjectAddStudent = new Adapter_Subject_Add_Student(this, subjects, new Adapter_Subject_Add_Student.isClicked() { // تعريف مهيئ الريسايكل
             @Override
             public void onCheckBoxClick(int position) {
                 Toast.makeText(Add_Student.this, ""+subjects.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
-        rcSubject1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rcSubject1.setAdapter(adapterSubjectAddStudent);
+        rcSubject1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)); // شكل تصميم الريسايكل
+        rcSubject1.setAdapter(adapterSubjectAddStudent); // عرض المهيئ بالريسايكل ليتم عرض المعلومات فيه
 
 
-        edTextDateOfBirth.setOnClickListener(new View.OnClickListener() {
+        edTextDateOfBirth.setOnClickListener(new View.OnClickListener() { // هنا لو ضغط عليها بيفتح لي picker التاريح
             @Override
             public void onClick(View v) {
 
@@ -83,13 +84,13 @@ public class Add_Student extends AppCompatActivity {
         });
 
 
-        btnAddStudent.setOnClickListener(new View.OnClickListener() {
+        btnAddStudent.setOnClickListener(new View.OnClickListener() { // اعطيت للزر وظيفة النقر
             @Override
             public void onClick(View v) {
 
-                String firstName = edTextFirstName.getText().toString();
-                String lastName = edTextLastName.getText().toString();
-                String date = edTextDateOfBirth.getText().toString();
+                String firstName = edTextFirstName.getText().toString(); // استخراج البيانات من الايديت وتحويلها كنص
+                String lastName = edTextLastName.getText().toString();// استخراج البيانات من الايديت وتحويلها كنص
+                String date = edTextDateOfBirth.getText().toString();// استخراج البيانات من الايديت وتحويلها كنص
 
 
                 boolean isClickAddStd = true;
@@ -113,20 +114,21 @@ public class Add_Student extends AppCompatActivity {
                     isClickAddStd = false;
                 }
 
-                if (isClickAddStd) {
-                    DatabaseHelper databaseHelper = new DatabaseHelper(Add_Student.this);
-                    long studentId = databaseHelper.insertStudent(firstName, lastName, date);
-                    if (studentId > 0) {
-                        ArrayList<Subject> selectedSubjects = new ArrayList<>();
-                        for (Subject subject : adapterSubjectAddStudent.getDataSubject()) {
-                            if (subject.isChecked()) {
-                                selectedSubjects.add(subject);
+                // الاكواد التالية تتعامل مع اضافة طالب جديد في قاعد البيانات
+                if (isClickAddStd) { // اذا كانت الققيمة true ينفذ الاوامر التالية
+                    DatabaseHelper databaseHelper = new DatabaseHelper(Add_Student.this); // انشاء كائنن لقاعدة بيانات
+                    long studentId = databaseHelper.insertStudent(firstName, lastName, date); // يتم استدعاء الكائن وتمرير insert لاضافة معلومات الطالب
+                    if (studentId > 0) { // هنا يوجد شرط لة كان معرف الطالب اكبر من صفر فالعملية تمت بنجاح
+                        ArrayList<Subject> selectedSubjects = new ArrayList<>(); // يتم تعريف اري لست لتخزين المواد المحددة
+                        for (Subject subject : adapterSubjectAddStudent.getDataSubject()) { // يتم عمل حلقة تكرارية للمواد المعروضة عن طريق الادابتر
+                            if (subject.isChecked()) { // يوجد شرط اذا حدد مادة
+                                selectedSubjects.add(subject); //يتم اضافة المادة المحددة في قاعدى بيانات المادة
                             }
                         }
 
-                        for (Subject subject : selectedSubjects) {
-                            boolean isSuccess = databaseHelper.insertStudent_Subject((int) studentId, subject.getId());
-                            if (!isSuccess) {
+                        for (Subject subject : selectedSubjects) { // حلقة تكرارية للمواد المخزنة في جدول المادة
+                            boolean isSuccess = databaseHelper.insertStudent_Subject((int) studentId, subject.getId()); // استرداد كائن قاعدة بيانات ويتم فيها اضافة معرف الطالب والمادة في الجدول الوسيط
+                            if (!isSuccess) { // لو لم يتم الاضافة يظهر الشرط
                                 // حدث خطأ في تسجيل المادة للطالب
                                 Toast.makeText(Add_Student.this, "حدث خطأ في تسجيل المادة للطالب", Toast.LENGTH_SHORT).show();
                             }

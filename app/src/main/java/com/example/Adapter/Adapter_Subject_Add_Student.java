@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Subject_Add_Student.myHolder> {
 
-    Context context;
-    ArrayList<Subject> dataSubject;
-    isClicked isClicked;
+    Context context; // للاحتواء على السياق الحالب للاكتفيتي
+    ArrayList<Subject> dataSubject; // يحتوي على بيانات الطالب
+    isClicked isClicked; // يعمل على حدث النقر
 
     public Adapter_Subject_Add_Student(Context context, ArrayList<Subject> dataSubject, isClicked isClicked) {
         this.context = context;
@@ -39,13 +39,10 @@ public class Adapter_Subject_Add_Student extends RecyclerView.Adapter<Adapter_Su
         return dataSubject;
     }
 
-    public void setDataSubject(ArrayList<Subject> dataSubject) {
-        this.dataSubject = dataSubject;
-    }
 
     @NonNull
     @Override
-    public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { // //  تستخدم لإنشاء ViewHolder جديد لعنصر واجهة المستخدم في RecyclerView. تقوم بتهيئة عنصر واجهة المستخدم وإرجاعه
         View view = LayoutInflater.from(context).inflate(R.layout.iteam_add_recycle_add_student_1, parent, false);
 
         return new myHolder(view);

@@ -38,7 +38,7 @@ public class Students extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         attendanceBtn = findViewById(R.id.attendanceBtn);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); // استقبال البيانات المرسلة
         subjectId = intent.getIntExtra("subjectId", 0);
         monthName = intent.getStringExtra("monthName");
         dayName = intent.getStringExtra("dayName");
@@ -55,14 +55,14 @@ public class Students extends AppCompatActivity {
                 }
 
 
-                saveAttendance(students);
+                saveAttendance(students); // دالة تسجيل حضور للطالب
                 AlertDialog.Builder builder = new AlertDialog.Builder(Students.this);
                 builder.setTitle("تاكيد الحضور");
                 builder.setMessage("هل تريد تاكيد حضور للطلاب الذين تم اختيارهم");
                 builder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finish(); // هنا لو ضغط على نعم سيتم تسجيل حضور وانهاء الشاشة
                     }
                 });
                 builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
@@ -78,15 +78,15 @@ public class Students extends AppCompatActivity {
         });
     }
 
-    private void showSubject(int subjectID) {
-        ArrayList<Student> students = databaseHelper.getStudentsBySubject(subjectID);
+    private void showSubject(int subjectID) {  // دالة لاستعلام الطالب المرتبطين بالمادة
+        ArrayList<Student> students = databaseHelper.getStudentsBySubject(subjectID); // تم تعريف اري لست من student لاستعلام الطلاب المخزنين في قاعدة البيانات
         rvAllSujStd.setLayoutManager(new LinearLayoutManager(this));
-        Adapter_Student_Registered adapter_students = new Adapter_Student_Registered(this, students);
+        Adapter_Student_Registered adapter_students = new Adapter_Student_Registered(this, students); // تهيئة الادابتر للريسايكل فيو
         rvAllSujStd.setAdapter(adapter_students);
     }
 
-    private void saveAttendance(ArrayList<Student> students) {
-        for (Student student : students) {
+    private void saveAttendance(ArrayList<Student> students) { // قمت بتعريف دالة لاضافة الحضور للطالب
+        for (Student student : students) { // عمل حلقةة تكرارية للطلاب المخزنين
             databaseHelper.insertPresence(monthName, dayName, student.getId(), subjectId);
         }
 

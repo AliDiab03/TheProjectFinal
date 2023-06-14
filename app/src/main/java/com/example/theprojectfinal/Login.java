@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
 
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
         if (isLoggedIn) {
-            // User is already logged in, redirect to the desired page
             Intent intent = new Intent(Login.this, Home.class);
             startActivity(intent);
             finish();
@@ -117,7 +116,7 @@ public class Login extends AppCompatActivity {
         txSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), signup.class);
+                Intent intent = new Intent(getApplicationContext(), signup.class); // عند النقل عليه يرسله الى واجهة انشاء حساب
                 startActivity(intent);
                 finish();
             }

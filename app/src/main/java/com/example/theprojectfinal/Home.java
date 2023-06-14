@@ -56,7 +56,7 @@ public class Home extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
 
-        btnClickAllStd.setOnClickListener(new View.OnClickListener() {
+        btnClickAllStd.setOnClickListener(new View.OnClickListener() { // يعمل هذا الاجراء عند النقر عليه ينقله الى واجهة عرض الطلاب
             @Override
             public void onClick(View v) {
 
@@ -73,25 +73,26 @@ public class Home extends AppCompatActivity {
         layoutPersonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EditUser.class);
-                intent.putExtra("userName", admin.getUserName());
-                intent.putExtra("email", admin.getEmail());
+                Intent intent = new Intent(getApplicationContext(), EditUser.class); // النتقال الى واجهة التعديل
+                intent.putExtra("userName", admin.getUserName()); // ارسال بيانات اليوزر
+                intent.putExtra("email", admin.getEmail()); // ارسال بيانات الايميل
+                intent.putExtra("password",admin.getPassword()); // ارسال بيانات الباسوورد
                 startActivity(intent);
             }
         });
 
-        View.OnClickListener addSubjectClickListener = new View.OnClickListener() {
+        View.OnClickListener addSubjectClickListener = new View.OnClickListener() { // تعريف كائن من نوع view.clicked
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Add_Subject.class);
                 startActivity(intent);
             }
         };
-
+       // هنا عرفت ميثود واجخلتهم داخل البراميتر ليتم الانتقال
         imgAddSubject.setOnClickListener(addSubjectClickListener);
         txAddSubject.setOnClickListener(addSubjectClickListener);
 
-        View.OnClickListener addStudentClickListener = new View.OnClickListener() {
+        View.OnClickListener addStudentClickListener = new View.OnClickListener() { // تعريف كائن من نوع view.clicked
             @Override
             public void onClick(View v) {
 
@@ -100,7 +101,7 @@ public class Home extends AppCompatActivity {
 
             }
         };
-
+// هنا عرفت ميثود واجخلتهم داخل البراميتر ليتم الانتقال
         imgAddStudent.setOnClickListener(addStudentClickListener);
         txAddStudent.setOnClickListener(addStudentClickListener);
 
@@ -128,7 +129,6 @@ public class Home extends AppCompatActivity {
         if (addSubject != null) {
             addSubject.setData(subjects);
         } else {
-            // تهيئة Adapter_AddSubject إذا لم يكن مهيأً بالفعل
             addSubject = new Adapter_AddSubject(this, subjects, new Adapter_AddSubject.onItemClick() {
                 @Override
                 public void onDelete(int id, int position) {
@@ -139,9 +139,9 @@ public class Home extends AppCompatActivity {
                     builder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (databaseHelper.deleteSubject(String.valueOf(id))) {
-                                subjects.remove(position);
-                                addSubject.notifyItemRemoved(position);
+                            if (databaseHelper.deleteSubject(String.valueOf(id))) { // اذا تم حذف المادة بنجاح يتحقق الشرط :
+                                subjects.remove(position); // يتم ازالتها من موقعها على حسب position
+                                addSubject.notifyItemRemoved(position); // يتم ازالة العنصر الذي تم حذفه وترتيب العناصر الاخرى
                             }
                         }
                     });
@@ -154,22 +154,17 @@ public class Home extends AppCompatActivity {
 
 
                     builder.setCancelable(false);
-                    builder.show();
+                    builder.show(); // لعرض الدايلوغ
 
 
                 }
 
                 @Override
                 public void isClicked(Subject subject) {
-                    Intent intent = new Intent(Home.this, Month.class);
-                    intent.putExtra("subjectName", subject.getName());
-                    intent.putExtra("subjectId", subject.getId());
-
+                    Intent intent = new Intent(Home.this, Month.class); // الانتقال الى الاشهر
+                    intent.putExtra("subjectName", subject.getName()); // ارسال بيانات اسم المادة التي يتم الضغط عليها
+                    intent.putExtra("subjectId", subject.getId()); // ارسال بيانات معرف المادة التي يتم الضغط عليها
                     startActivity(intent);
-
-//                    Intent intent = new Intent(Home.this,Students.class);
-//                    intent.putExtra("studentId",subject.getId());
-//                    startActivity(intent);
                 }
             });
 

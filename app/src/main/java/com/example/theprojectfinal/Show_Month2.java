@@ -20,11 +20,10 @@ public class Show_Month2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_month2);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); // استقبال البيانات المرسلة
         String monthName = intent.getStringExtra("monthName");
         int subjectId = intent.getIntExtra("subjectId", 0);
         TextView textViewName = findViewById(R.id.tvSeeMonth);
-        TextView txShowTotalMonth  = findViewById(R.id.txShowTotalMonth);
         textViewName.setText(monthName);
          databaseHelper = new DatabaseHelper(this);
 

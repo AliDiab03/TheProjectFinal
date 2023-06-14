@@ -31,7 +31,6 @@ public class All_Students extends AppCompatActivity {
     ArrayList<Student> filteredStudents; // قائمة الطلاب المصفاة بناءً على نتائج البحث
     DatabaseHelper databaseHelper;
     boolean isSortByName = false;
-    boolean isSortByDate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +39,15 @@ public class All_Students extends AppCompatActivity {
 
         rcAllStudent = findViewById(R.id.rcAllStudent);
         edSearch = findViewById(R.id.edSearch);
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this); // تعريف كائن لقاعدة البانات
 
-        students = databaseHelper.getStudents();
+        students = databaseHelper.getStudents(); // تعريف اري لست من نوع Student بقوم باستعلام الطلاب الموجودين بالقاعدة
         filteredStudents = new ArrayList<>(students); // تهيئة القائمة المصفاة لتحتوي على جميع الطلاب في البداية
 
         allStudentHome = new Adapter_AllStudent_Home(All_Students.this, filteredStudents, new Adapter_AllStudent_Home.isClicked() {
             @Override
             public void isDeleted(int id, int position) {
-                if (databaseHelper.deleteStudent(String.valueOf(id))) {
+                if (databaseHelper.deleteStudent(String.valueOf(id))) { // حذف الطالب على حسب المعرف الخاص به
                     students.remove(position);
                     filteredStudents.remove(position); // يجب أيضًا حذف الطالب من القائمة المصفاة
                     allStudentHome.notifyItemRemoved(position);
